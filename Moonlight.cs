@@ -28,21 +28,21 @@ namespace Moonlight
             go.transform.position = Vector3.zero;
 
             planet = FlightGlobals.GetBodyByName("Kerbin");
-            Debug.Log(Convert.ToString(planet.transform.position));
         }
         public IEnumerator SlowUpdate()
         { 
             while (true)
             {
-                light.color = new Color((float)rnd.NextDouble(), (float)rnd.NextDouble(), (float)rnd.NextDouble(), 1.0F);
-                light.intensity = (float)rnd.Next(1, 4);
                 yield return new WaitForSeconds(0.5f);
             }
         }
 
         public void Update()
         {
+            light.intensity = (float)rnd.Next(1, 4);
+            light.color = new Color((float)rnd.NextDouble(), (float)rnd.NextDouble(), (float)rnd.NextDouble(), 1.0F);
             go.transform.rotation *= Quaternion.Euler(0.0F, -90 * Time.deltaTime, 0.0F);
+            //Debug.Log("Kerbin: " + Convert.ToString(FlightGlobals.GetBodyByName("Kerbin").transform.position) + " Kerbol: " + Convert.ToString(FlightGlobals.GetBodyByName("Sun").transform.position) + " Vessel: " + Convert.ToString(FlightGlobals.ActiveVessel.transform.position));
         }
     }
 }
